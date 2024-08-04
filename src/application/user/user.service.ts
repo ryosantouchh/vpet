@@ -52,11 +52,29 @@ export class UserService {
   }
 
   async update(id: number, updateUserDto: UpdateUserDto) {
-    // TASK : you guys need to implement update function for user and throw error if happened
+    try {
+      await this.findOne(id);
+
+      const { displayName } = updateUserDto;
+
+      await this._userRepository.update({ id }, { displayName });
+
+      return;
+    } catch (error) {
+      throw error;
+    }
   }
 
   async remove(id: number) {
-    // TASK : write the soft delete function
+    try {
+      await this.findOne(id);
+
+      await this._userRepository.update({ id }, { deleted: true });
+
+      return;
+    } catch (error) {
+      throw error;
+    }
   }
 
   private async _hashPassword(password: string): Promise<string> {
