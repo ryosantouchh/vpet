@@ -35,6 +35,18 @@ $ yarn install
 ## Running the app
 
 ```bash
+# local with database (on docker)
+$ yarn dev
+
+# local without database
+$ yarn start:local
+
+# start only database (on docker)
+$ yarn db:up
+
+# down only database (on docker)
+$ yarn db:down
+
 # development
 $ yarn run start
 
