@@ -11,7 +11,7 @@ export class UserService {
   constructor(
     @InjectRepository(User)
     private _userRepository: Repository<User>,
-  ) {}
+  ) { }
 
   // TODO : need to extract the hashing function and all of auth stuff to auth module later
   async create(createUserDto: CreateUserDto) {
@@ -39,13 +39,13 @@ export class UserService {
 
   async findOne(id: number) {
     try {
-      const user = await this._userRepository.findOneBy({ id });
+      const userById = await this._userRepository.findOneBy({ id });
 
-      if (!user) {
-        throw new NotFoundException('user is not foundz!');
+      if (!userById) {
+        throw new NotFoundException('user is not found!');
       }
 
-      return user;
+      return userById;
     } catch (error) {
       throw error;
     }
@@ -84,8 +84,27 @@ export class UserService {
     return bcrypt.hashSync(password, salt);
   }
 
-  private _checkPassword(password: string) {
-    // hit database once to get hashed and using compareSync
-    // return bcrypt.compareSync(password, hashedPassword)
+  // private _checkPassword(username: string, password: string) {
+  //   // hit database once to get hashed and using compareSync
+  //   // return bcrypt.compareSync(password, hashedPassword)
+  //   try {
+  //     const hashedPassword = await this.findOne();
+  //   } catch (error) {
+  //     throw error;
+  //   }
+  // }
+
+  async findOneByUsername(username: string): Promise<User> {
+    try {
+      const userByUsername = await this._userRepository.findOneBy({ username });
+
+      if (!userByUsername) {
+        throw new NotFoundException('user is not found!');
+      }
+
+      return userByUsername;
+    } catch (error) {
+      throw error;
+    }
   }
 }

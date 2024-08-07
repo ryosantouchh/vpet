@@ -3,6 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigService } from '@nestjs/config';
 import { User } from '@app/domain/user.entity';
 import { Pet } from '@app/domain/pet.entity';
+import { PetType } from '@app/domain/pet-type.entity';
 
 @Module({
   imports: [
@@ -15,7 +16,7 @@ import { Pet } from '@app/domain/pet.entity';
         username: configService.get<string>('database.username'),
         password: configService.get<string>('database.password'),
         database: configService.get<string>('database.databaseName'),
-        entities: [User, Pet],
+        entities: [User, Pet, PetType],
         synchronize: true,
       }),
     }),

@@ -28,13 +28,18 @@ export class User {
   @Column({ default: false })
   deleted: boolean;
 
-  @CreateDateColumn({ type: 'timestamptz', default: () => 'CURRENT_TIMESTAMP' })
+  @CreateDateColumn({
+    type: 'timestamptz',
+    default: () => 'CURRENT_TIMESTAMP',
+    select: false,
+  })
   createdAt: Date;
 
   @UpdateDateColumn({
     type: 'timestamptz',
     default: () => 'CURRENT_TIMESTAMP',
     onUpdate: 'CURRENT_TIMESTAMP',
+    select: false,
   })
   updatedAt: Date;
 }

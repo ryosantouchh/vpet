@@ -2,29 +2,22 @@ import {
   Column,
   CreateDateColumn,
   Entity,
-  ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { User } from './user.entity';
-import { PetType } from './pet-type.entity';
+import { Pet } from './pet.entity';
 
 @Entity()
-export class Pet {
+export class PetType {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column({ unique: true })
-  petName: string;
+  typeName: string;
 
-  @Column({ default: 1 })
-  level: number;
-
-  @ManyToOne(() => User, (user) => user.pets)
-  user: User;
-
-  @ManyToOne(() => PetType, (petType) => petType.pets)
-  petType: PetType;
+  @OneToMany(() => Pet, (pet) => pet.petType)
+  pets: Pet[];
 
   @Column({ default: false })
   deleted: boolean;

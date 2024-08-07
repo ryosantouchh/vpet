@@ -20,12 +20,8 @@
     "paths": {
       "@app/infrastructure": ["src/infrastructure"],
       "@app/infrastructure/*": ["src/infrastructure/*"],
-      "@app/usecase": ["src/usecase"],
-      "@app/usecase/*": ["src/usecase/*"],
       "@app/domain": ["src/domain"],
       "@app/domain/*": ["src/domain/*"],
-      "@app/presentation": ["src/presentation"],
-      "@app/presentation/*": ["src/presentation/*"],
       "@app/shared": ["src/shared"],
       "@app/shared/*": ["src/shared/*"],
       "@app/application": ["src/application"],
